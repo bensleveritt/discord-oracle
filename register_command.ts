@@ -8,6 +8,29 @@ const command = {
   name: "oracle",
   description: "Ask the oracle a yes or no question",
   type: 1,
+  options: [
+    {
+      name: "question",
+      description: "The question to ask",
+      type: 3, // STRING
+      required: true,
+    },
+    {
+      name: "odds",
+      description: "How likely is a yes answer?",
+      type: 3, // STRING
+      required: false,
+      choices: [
+        { name: "Impossible", value: "impossible" },
+        { name: "Very Unlikely", value: "very_unlikely" },
+        { name: "Unlikely", value: "unlikely" },
+        { name: "Even", value: "even" },
+        { name: "Likely", value: "likely" },
+        { name: "Very Likely", value: "very_likely" },
+        { name: "Certain", value: "certain" },
+      ],
+    },
+  ],
 };
 
 const response = await fetch(

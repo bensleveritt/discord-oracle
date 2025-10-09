@@ -62,9 +62,25 @@ async function handleRequest(request: Request): Promise<Response> {
 
   // Handle slash command
   if (interaction.type === 2 && interaction.data.name === "oracle") {
+    const options = interaction.data.options || [];
+    const question = options.find((opt: any) => opt.name === "question")?.value || "";
+    const oddsValue = options.find((opt: any) => opt.name === "odds")?.value || "even";
+
+    const oddsThresholds: Record<string, number> = {
+      impossible: 0,
+      very_unlikely: 2,
+      unlikely: 3,
+      even: 5,
+      likely: 7,
+      very_likely: 8,
+      certain: 10,
+    };
+
+    const threshold = oddsThresholds[oddsValue] || 5;
+
     const chaosRoll = Math.floor(Math.random() * 10) + 1;
     const oracleRoll = Math.floor(Math.random() * 10) + 1;
-    const answer = oracleRoll <= 5 ? "yes" : "no";
+    const answer = oracleRoll <= threshold ? "yes" : "no";
 
     let qualifier = "";
     if (chaosRoll >= 1 && chaosRoll <= 2) {
@@ -74,7 +90,7 @@ async function handleRequest(request: Request): Promise<Response> {
     }
 
     const randomEvent = oracleRoll === chaosRoll ? " [RANDOM EVENT]" : "";
-    const result = `${answer}${qualifier}${randomEvent}`;
+    const result = `**${question}**\n${answer}${qualifier}${randomEvent}`;
 
     return new Response(
       JSON.stringify({
