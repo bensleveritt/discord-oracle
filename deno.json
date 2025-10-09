@@ -1,0 +1,6 @@
+{
+  "deploy": {
+    "org": "leveritt-institute",
+    "app": "discord-oracle"
+  }
+}
