@@ -2,5 +2,9 @@
   "deploy": {
     "org": "leveritt-institute",
     "app": "discord-oracle"
+  },
+  "tasks": {
+    "test": "deno test",
+    "register": "deno run --allow-net --allow-env register_command.ts"
   }
 }

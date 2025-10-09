@@ -82,6 +82,15 @@ async function handleRequest(request: Request): Promise<Response> {
     const oracleRoll = Math.floor(Math.random() * 10) + 1;
     const answer = oracleRoll <= threshold ? "yes" : "no";
 
+    console.log({
+      question,
+      oddsValue,
+      threshold,
+      oracleRoll,
+      chaosRoll,
+      answer,
+    });
+
     let qualifier = "";
     if (chaosRoll >= 1 && chaosRoll <= 2) {
       qualifier = " and...";

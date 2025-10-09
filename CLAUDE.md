@@ -8,6 +8,11 @@ A Discord bot that provides oracle answers (yes/no) with qualifier logic based o
 
 ## Commands
 
+**Test odds system**:
+```bash
+deno test
+```
+
 **Register the Discord command** (run once after changes to command definition):
 ```bash
 deno run --allow-net --allow-env register_command.ts
