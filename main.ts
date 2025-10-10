@@ -76,7 +76,7 @@ async function handleRequest(request: Request): Promise<Response> {
       certain: 10,
     };
 
-    const threshold = oddsThresholds[oddsValue] || 5;
+    const threshold = oddsThresholds[oddsValue] ?? 5;
 
     const chaosRoll = Math.floor(Math.random() * 10) + 1;
     const oracleRoll = Math.floor(Math.random() * 10) + 1;
