@@ -7,11 +7,11 @@ const RED = `${ESC}[31m`;
 const GREEN = `${ESC}[32m`;
 const YELLOW = `${ESC}[33m`;
 const MAGENTA = `${ESC}[35m`;
-const CYAN = `${ESC}[36m`;
 const BOLD_RED = `${ESC}[1;31m`;
 const BOLD_GREEN = `${ESC}[1;32m`;
+const BOLD_MAGENTA = `${ESC}[1;35m`;
 
-const HEADER = `${CYAN}░▒▓ ORACLE.EXE ▓▒░${RESET}`;
+const HEADER = `${BOLD_MAGENTA}░▒▓ ORACLE.EXE ▓▒░${RESET}`;
 const DIVIDER = `  ${GRAY}─────────────────────${RESET}`;
 
 export type OutcomeTier =
