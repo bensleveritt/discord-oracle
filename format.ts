@@ -12,6 +12,7 @@ const BOLD_GREEN = `${ESC}[1;32m`;
 const BOLD_MAGENTA = `${ESC}[1;35m`;
 
 const HEADER = `${BOLD_MAGENTA}░▒▓ ORACLE.EXE ▓▒░${RESET}`;
+const DIVIDER = `  ${GRAY}─────────────────────${RESET}`;
 
 const LABEL_COLUMN_WIDTH = 11;
 
@@ -88,6 +89,7 @@ export function formatOracleResult(userName: string, result: OracleResult): stri
     }${RESET}  ${GRAY}(≤${result.threshold})${RESET}`,
     `  ${GRAY}oracle   ${RESET}${GRAY}d10 →  ${RESET}${YELLOW}${result.oracleRoll}${RESET}`,
     `  ${GRAY}chaos    ${RESET}${GRAY}d10 →  ${RESET}${YELLOW}${result.chaosRoll}${RESET}`,
+    DIVIDER,
   ];
 
   lines.push(...formatAnswerBox(answerText, answerC, result.randomEvent));
