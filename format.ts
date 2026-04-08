@@ -12,7 +12,8 @@ const BOLD_GREEN = `${ESC}[1;32m`;
 const BOLD_MAGENTA = `${ESC}[1;35m`;
 
 const HEADER = `${BOLD_MAGENTA}░▒▓ ORACLE.EXE ▓▒░${RESET}`;
-const DIVIDER = `  ${GRAY}─────────────────────${RESET}`;
+
+const LABEL_COLUMN_WIDTH = 11;
 
 export type OutcomeTier =
   | "critMax"
@@ -57,6 +58,22 @@ function wrapAnsi(lines: string[]): string {
   return "```ansi\n" + lines.join("\n") + "\n```";
 }
 
+function formatAnswerBox(
+  answerText: string,
+  tierC: string,
+  randomEvent: boolean,
+): string[] {
+  const inner = ` ${answerText} `;
+  const bar = "━".repeat(inner.length);
+  const pad = " ".repeat(LABEL_COLUMN_WIDTH);
+  const eventSuffix = randomEvent ? `  ${MAGENTA}⟐ RANDOM EVENT${RESET}` : "";
+  return [
+    `${pad}${tierC}┏${bar}┓${RESET}`,
+    `  ${GRAY}ANSWER   ${RESET}${tierC}┃${inner}┃${RESET}${eventSuffix}`,
+    `${pad}${tierC}┗${bar}┛${RESET}`,
+  ];
+}
+
 export function formatOracleResult(userName: string, result: OracleResult): string {
   const tier = outcomeTier(result.answer, result.qualifier);
   const answerC = tierColor(tier);
@@ -71,14 +88,9 @@ export function formatOracleResult(userName: string, result: OracleResult): stri
     }${RESET}  ${GRAY}(≤${result.threshold})${RESET}`,
     `  ${GRAY}oracle   ${RESET}${GRAY}d10 →  ${RESET}${YELLOW}${result.oracleRoll}${RESET}`,
     `  ${GRAY}chaos    ${RESET}${GRAY}d10 →  ${RESET}${YELLOW}${result.chaosRoll}${RESET}`,
-    DIVIDER,
   ];
 
-  let answerLine = `  ${GRAY}ANSWER   ${RESET}${answerC}${answerText}${RESET}`;
-  if (result.randomEvent) {
-    answerLine += `  ${MAGENTA}⟐ RANDOM EVENT${RESET}`;
-  }
-  lines.push(answerLine);
+  lines.push(...formatAnswerBox(answerText, answerC, result.randomEvent));
 
   return wrapAnsi(lines);
 }
