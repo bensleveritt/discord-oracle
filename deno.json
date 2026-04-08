@@ -1,10 +1,31 @@
 {
+  "tasks": {
+    "dev": "deno run --allow-net --allow-env --allow-read main.ts",
+    "test": "deno test",
+    "check": "deno check main.ts oracle.ts format.ts register_command.ts oracle.test.ts format.test.ts odds.test.ts",
+    "register": "deno run --allow-net --allow-env --allow-read register_command.ts",
+    "deploy": "deno deploy --prod --org=leveritt-institute --app=oracle-exe",
+    "logs": "deno deploy logs --org=leveritt-institute --app=oracle-exe"
+  },
+  "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true
+  },
+  "fmt": {
+    "lineWidth": 100,
+    "indentWidth": 2,
+    "singleQuote": false
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
   "deploy": {
     "org": "leveritt-institute",
-    "app": "discord-oracle"
-  },
-  "tasks": {
-    "test": "deno test",
-    "register": "deno run --allow-net --allow-env register_command.ts"
+    "app": "oracle-exe"
   }
 }
+
+
+

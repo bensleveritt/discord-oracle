@@ -29,6 +29,21 @@
               help = "Register the /oracle command with Discord";
               command = "deno run --allow-net --allow-env --allow-read register_command.ts";
             }
+            {
+              name = "dev";
+              help = "Run the bot locally on :8000";
+              command = "deno run --allow-net --allow-env --allow-read main.ts";
+            }
+            {
+              name = "deploy";
+              help = "Deploy to Deno Deploy (production)";
+              command = "deno deploy --prod --org=leveritt-institute --app=oracle-exe";
+            }
+            {
+              name = "logs";
+              help = "Stream logs from the deployed bot";
+              command = "deno deploy logs --org=leveritt-institute --app=oracle-exe";
+            }
           ];
 
           motd = ''

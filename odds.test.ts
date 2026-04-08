@@ -1,4 +1,4 @@
-import { assertAlmostEquals } from "jsr:@std/assert";
+import { assertAlmostEquals } from "jsr:@std/assert@^1";
 
 const oddsThresholds: Record<string, number> = {
   impossible: 0,
